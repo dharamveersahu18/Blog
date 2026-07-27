@@ -1,0 +1,2 @@
+// create postSlice in store secton like authSlice
+// important before  deplying always do env donot add it imp data like projectid and many more
