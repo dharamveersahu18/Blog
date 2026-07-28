@@ -51,7 +51,8 @@ function Header() {
   };
 
   return (
-   <header className="
+    <header
+      className="
 fixed
 top-0
 left-0
@@ -61,14 +62,17 @@ bg-slate-950/90
 backdrop-blur-lg
 border-b
 border-white/10
-">
+"
+    >
       <Container className="max-w-6xl mx-auto px-4">
-   <nav className="
+        <nav
+          className="
   max-w-7xl
   mx-auto
   px-6
   py-4
-  ">
+  "
+        >
           {/* ================= TOP NAVBAR ================= */}
 
           <div className="flex items-center justify-between gap-5">
@@ -123,6 +127,7 @@ border-white/10
                 (item) =>
                   item.active && (
                     <NavLink
+                    key={item.name}
                       to={item.slug}
                       className={({ isActive }) =>
                         `px-4 py-2 rounded-xl transition ${
@@ -238,9 +243,11 @@ border-white/10
                         My Posts
                       </button>
 
-                      <div className="border-t border-white/10">
-                        <LogoutBtn />
-                      </div>
+                   <button
+  className="w-full px-4 py-2 text-left text-white hover:text-red-400 hover:bg-red-500/10 rounded-lg transition duration-300"
+>
+  <LogoutBtn />
+</button>
                     </div>
                   )}
                 </div>
@@ -359,7 +366,7 @@ border-white/10
                       My Posts
                     </button>
 
-                    <div className="pt-2 border-t border-white/10">
+                    <div className="pt-2 text-white hover:text-red-400 hover:bg-red-500/10 ">
                       <LogoutBtn />
                     </div>
                   </>

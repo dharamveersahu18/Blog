@@ -1,46 +1,22 @@
 import React from "react";
 import { Clock3, Eye, Heart, ArrowRight } from "lucide-react";
+import { useNavigate,Link } from "react-router-dom";
+  import { useEffect, useState } from "react";
+import appwriteService from '../appwrite/config'
 
-const blogs = [
-  {
-    id: 1,
-    title: "Getting Started with React",
-    category: "React",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800",
-    readTime: "5 min read",
-    author: "John Doe",
-    date: "15 Jul 2026",
-    views: "2.4k",
-    likes: "310",
-  },
-  {
-    id: 2,
-    title: "Master JavaScript in 2026",
-    category: "JavaScript",
-    image:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800",
-    readTime: "7 min read",
-    author: "Dharam",
-    date: "20 Jul 2026",
-    views: "4.8k",
-    likes: "720",
-  },
-  {
-    id: 3,
-    title: "Tailwind CSS Tips",
-    category: "Tailwind CSS",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800",
-    readTime: "4 min read",
-    author: "Alex",
-    date: "24 Jul 2026",
-    views: "1.9k",
-    likes: "180",
-  },
-];
 
 function TrendingPosts() {
+  const [blogs, setBlogs] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    appwriteService.getPosts()
+    .then((response) => {
+      if(response){
+        setBlogs(response.documents.slice(0,3));
+      }
+    })
+  },[])
   return (
     <section className="py-20 bg-slate-950">
       <div className="max-w-7xl mx-auto px-6">
@@ -72,7 +48,7 @@ function TrendingPosts() {
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
           {blogs.map((blog) => (
             <article
-              key={blog.id}
+              key={blog.$id}
               className="
               group
               overflow-hidden
@@ -92,7 +68,7 @@ function TrendingPosts() {
 
               <div className="relative overflow-hidden">
                 <img
-                  src={blog.image}
+                  src={appwriteService.getFileView(blog.featuredImage)}
                   alt={blog.title}
                   className="
                     h-60
@@ -122,17 +98,13 @@ function TrendingPosts() {
                   {blog.title}
                 </h3>
 
-                <p className="text-slate-400 mt-3 leading-7">
-                  Learn modern concepts with practical examples and improve your
-                  development skills.
-                </p>
 
                 {/* Author */}
 
                 <div className="flex items-center justify-between mt-6">
                   <div className="flex items-center gap-3">
                     <img
-                      src={`https://ui-avatars.com/api/?name=${blog.author}`}
+                      src={`https://ui-avatars.com/api/?name=${blog.author || "Anonymous"}`}
                       alt={blog.author}
                       className="w-11 h-11 rounded-full"
                     />
@@ -143,14 +115,19 @@ function TrendingPosts() {
                       </h4>
 
                       <p className="text-slate-500 text-xs">
-                        {blog.date}
+                        {blog.$createdAt}
                       </p>
                     </div>
                   </div>
 
-                  <button className="text-blue-400 hover:text-white transition">
-                    Read →
-                  </button>
+                  <Link
+                  to={`/post/${blog.$id}`}
+                  className="text-blue-400 hover:text-white transition">
+                    <article>
+Read →
+                    </article>
+                    
+                  </Link>
                 </div>
 
                 {/* Footer */}
@@ -179,9 +156,15 @@ function TrendingPosts() {
         {/* Mobile Button */}
 
         <div className="flex justify-center mt-12 md:hidden">
-          <button className="px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">
+          
+          <button 
+          onClick={() => navigate("/explore")}
+          className="px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">
             View All Blogs
+            <ArrowRight size ={18} />
+
           </button>
+
         </div>
       </div>
     </section>

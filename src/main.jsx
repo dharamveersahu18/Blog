@@ -19,7 +19,7 @@ import AllPosts from "./pages/AllPosts";
 import Profile from './pages/Profile.jsx'
 import ExplorePosts from './pages/ExplorePosts.jsx'
 import PostDetails from './pages/PostDetails.jsx'
-
+import Category from './pages/Category.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -75,6 +75,14 @@ const router = createBrowserRouter([
         {
             path: "/post/:slug",
             element: <Post />,
+        },
+
+
+        {
+    
+ path:"/category/:categoryName" ,
+ element:  <Category />,
+
         },
         {
  path: "/profile",

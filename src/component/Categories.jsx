@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Code2,
   Braces,
@@ -68,25 +69,26 @@ function Categories() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {categories.map((category) => (
-            <button
-              key={category.name}
-              className="
-                group
-                relative
-                overflow-hidden
-                rounded-2xl
-                border
-                border-white/10
-                bg-slate-900
-                p-6
-                transition-all
-                duration-300
-                hover:-translate-y-2
-                hover:border-blue-500
-                hover:shadow-2xl
-                hover:shadow-blue-500/20
-              "
-            >
+           <Link
+  key={category.name}
+  to={`/category/${category.name}`}
+  className="
+    group
+    relative
+    overflow-hidden
+    rounded-2xl
+    border
+    border-white/10
+    bg-slate-900
+    p-6
+    transition-all
+    duration-300
+    hover:-translate-y-2
+    hover:border-blue-500
+    hover:shadow-2xl
+    hover:shadow-blue-500/20
+  "
+>
               {/* Gradient Background */}
 
               <div
@@ -125,7 +127,7 @@ function Categories() {
               <p className="relative mt-2 text-sm text-slate-400">
                 Read articles & tutorials
               </p>
-            </button>
+            </Link>
           ))}
         </div>
       </div>
