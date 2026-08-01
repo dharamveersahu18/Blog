@@ -9,14 +9,34 @@ function TrendingPosts() {
   const [blogs, setBlogs] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    appwriteService.getPosts()
-    .then((response) => {
-      if(response){
-        setBlogs(response.documents.slice(0,3));
-      }
-    })
-  },[])
+ useEffect(() => {
+  const loadTrending = async () => {
+    try {
+      const response = await appwriteService.getPosts();
+
+      if (!response) return;
+
+      const postsWithLikes = await Promise.all(
+        response.documents.slice(0, 3).map(async (post) => {
+          const likeData = await appwriteService.getPostLikes(post.$id);
+
+          console.log(post.title, likeData.total);
+
+          return {
+            ...post,
+            likes: likeData.total,
+          };
+        })
+      );
+
+      setBlogs(postsWithLikes);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  loadTrending();
+}, []);
   return (
     <section className="py-20 bg-slate-950">
       <div className="max-w-7xl mx-auto px-6">
@@ -160,7 +180,7 @@ Read →
           <button 
           onClick={() => navigate("/explore")}
           className="px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">
-            View All Blogs
+            View Blogs
             <ArrowRight size ={18} />
 
           </button>

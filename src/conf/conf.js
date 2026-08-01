@@ -8,6 +8,10 @@ const conf = {
   appwriteTableId: String(import.meta.env.VITE_APPWRITE_TABLE_ID),
 
   appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
+
+    appwritePostLikesCollectionId: String(
+    import.meta.env.VITE_APPWRITE_POST_LIKES_COLLECTION_ID
+  ),
 };
 
 

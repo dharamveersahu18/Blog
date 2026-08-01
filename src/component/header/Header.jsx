@@ -243,11 +243,11 @@ border-white/10
                         My Posts
                       </button>
 
-                   <button
+                   <div
   className="w-full px-4 py-2 text-left text-white hover:text-red-400 hover:bg-red-500/10 rounded-lg transition duration-300"
 >
   <LogoutBtn />
-</button>
+</div>
                     </div>
                   )}
                 </div>
