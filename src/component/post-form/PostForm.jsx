@@ -117,25 +117,58 @@ export default function PostForm({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
 
-  return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+ return (
+  <div className="min-h-screen bg-gradient-to-br from-[#020617] via-[#0F172A] to-[#1E293B] py-10">
+    <form
+      onSubmit={handleSubmit(submit)}
+      className="max-w-7xl mx-auto flex flex-wrap gap-6"
+    >
+      {/* Left Section */}
+      <div className="w-full lg:w-[65%] bg-[#1E293B]/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl p-6">
         <Input
-          label="Title :"
-          placeholder="Title"
-          className="mb-4"
+          label="Title"
+          placeholder="Enter blog title"
+          className="
+            w-full
+            bg-[#111827]
+            border
+            border-slate-700
+            text-white
+            placeholder:text-slate-400
+            rounded-xl
+            px-4
+            py-3
+            focus:border-blue-500
+            focus:ring-2
+            focus:ring-blue-500/30
+            transition-all
+          "
           {...register("title", { required: true })}
         />
 
-        {/* Cataegory  */}
-        <div className=" mt-2 mb-4">
-          <label className=" block  text-gray-900">Category</label>
+        {/* Category */}
+        <div className="mt-6">
+          <label className="block text-slate-200 font-medium mb-2">
+            Category
+          </label>
 
           <select
-            className="w-full bg-slate-800 text-white p-3 rounded-lg"
-            {...register("category", {
-              required: true,
-            })}
+            {...register("category", { required: true })}
+            className="
+              w-full
+              bg-[#111827]
+              border
+              border-slate-700
+              text-white
+              rounded-xl
+              px-4
+              py-3
+              focus:outline-none
+              focus:ring-2
+              focus:ring-blue-500/30
+              focus:border-blue-500
+              transition-all
+            "
           >
             <option value="">Select Category</option>
             <option value="React">React</option>
@@ -146,56 +179,117 @@ export default function PostForm({ post }) {
           </select>
         </div>
 
-        <Input
-          label="Slug :"
-          placeholder="Slug"
-          className="mb-4"
-          {...register("slug", { required: true })}
-          onInput={(e) => {
-            setValue("slug", slugTransform(e.currentTarget.value), {
-              shouldValidate: true,
-            });
-          }}
-        />
+        {/* Slug */}
+        <div className="mt-6">
+          <Input
+            label="Slug"
+            placeholder="Slug"
+            className="
+              w-full
+              bg-[#111827]
+              border
+              border-slate-700
+              text-white
+              placeholder:text-slate-400
+              rounded-xl
+              px-4
+              py-3
+              focus:border-blue-500
+              focus:ring-2
+              focus:ring-blue-500/30
+              transition-all
+            "
+            {...register("slug", { required: true })}
+            onInput={(e) =>
+              setValue("slug", slugTransform(e.currentTarget.value), {
+                shouldValidate: true,
+              })
+            }
+          />
+        </div>
 
-        <RTE
-          label="Content :"
-          name="content"
-          control={control}
-          defaultValue={getValues("content")}
-        />
+        {/* Editor */}
+        <div className="mt-6 text-white ">
+          <RTE
+            label="Content"
+            name="content"
+            control={control}
+            defaultValue={getValues("content")}
+          />
+        </div>
       </div>
-      <div className="w-1/3 px-2">
-        <Input
-          label="Featured Image :"
-          type="file"
-          className="mb-4"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
-        />
-        {post && (
-          <div className="w-full mb-4">
-            <img
-              src={appwriteService.getFileView(post.featuredImage)}
-              alt={post.title}
-              className="rounded-lg"
+
+      {/* Right Section */}
+      <div className="w-full lg:w-[32%]">
+        <div className="bg-[#1E293B]/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl p-6">
+
+          <Input
+            label="Featured Image"
+            type="file"
+            accept="image/png,image/jpg,image/jpeg,image/gif"
+            className="
+              w-full
+              bg-[#111827]
+              border
+              border-slate-700
+              text-white
+              rounded-xl
+              px-4
+              py-3
+              focus:border-blue-500
+              focus:ring-2
+              focus:ring-blue-500/30
+              transition-all
+            "
+            {...register("image", { required: !post })}
+          />
+
+          {post && (
+            <div className="w-full my-6">
+              <img
+                src={appwriteService.getFileView(post.featuredImage)}
+                alt={post.title}
+                className="rounded-xl border border-slate-700"
+              />
+            </div>
+          )}
+
+          <div className="mt-6">
+            <Select
+              options={["active", "inactive"]}
+              label="Status"
+              className="bg-[#111827] text-white border border-slate-700 rounded-xl"
+              {...register("status", { required: true })}
             />
           </div>
-        )}
-        <Select
-          options={["active", "inactive"]}
-          label="Status"
-          className="mb-4"
-          {...register("status", { required: true })}
-        />
-        <Button
-          type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
-        >
-          {post ? "Update" : "Submit"}
-        </Button>
+
+          <Button
+            type="submit"
+            className="
+              w-full
+              mt-8
+              py-3
+              rounded-xl
+              text-white
+              font-semibold
+              bg-gradient-to-r
+              from-blue-600
+              via-indigo-600
+              to-violet-600
+              hover:from-blue-500
+              hover:via-indigo-500
+              hover:to-violet-500
+              transition-all
+              duration-300
+              shadow-lg
+              hover:shadow-blue-500/30
+            "
+          >
+            {post ? "Update Post" : "Publish Post"}
+          </Button>
+        </div>
       </div>
     </form>
-  );
-}
+  </div>
+)
+};

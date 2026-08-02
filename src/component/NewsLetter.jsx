@@ -54,9 +54,10 @@ function NewsLetter() {
                 py-4
                 rounded-xl
                 text-slate-900
-                outline-none
+            border
                 focus:ring-4
-                focus:ring-white/40
+               
+                text-white
               "
             />
 
