@@ -32,7 +32,7 @@ const categories = [
     color: "from-pink-500 to-red-500",
   },
   {
-    name: "Node.js",
+    name: "Others",
     icon: <Server size={24} />,
     color: "from-green-500 to-emerald-600",
   },

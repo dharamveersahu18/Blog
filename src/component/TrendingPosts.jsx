@@ -66,7 +66,13 @@ function TrendingPosts() {
         {/* Cards */}
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+             
+     
+                 
           {blogs.map((blog) => (
+            <Link
+                  to={`/post/${blog.$id}`}
+                  className="text-blue-400 hover:text-white transition">
             <article
               key={blog.$id}
               className="
@@ -84,6 +90,7 @@ function TrendingPosts() {
               hover:shadow-blue-500/20
             "
             >
+             
               {/* Image */}
 
               <div className="relative overflow-hidden">
@@ -140,14 +147,10 @@ function TrendingPosts() {
                     </div>
                   </div>
 
-                  <Link
-                  to={`/post/${blog.$id}`}
-                  className="text-blue-400 hover:text-white transition">
-                    <article>
-Read →
-                    </article>
-                    
-                  </Link>
+               <span className="text-blue-400 hover:text-white transition">
+   Read →
+</span>
+                
                 </div>
 
                 {/* Footer */}
@@ -169,8 +172,10 @@ Read →
                   </span>
                 </div>
               </div>
-            </article>
+            </article> 
+             </Link>
           ))}
+        
         </div>
 
         {/* Mobile Button */}

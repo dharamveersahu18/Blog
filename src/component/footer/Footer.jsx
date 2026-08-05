@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaVoicemail, FaEnvelope }
 
 function Footer() {
   return (
-    <footer className="bg-slate-950 text-gray-300 mt-16">
+    <footer className="bg-slate-950 text-gray-300 pt-20  ">
       <div className="max-w-7xl mx-auto px-6 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo */}

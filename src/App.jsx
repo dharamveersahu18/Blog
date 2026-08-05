@@ -28,14 +28,14 @@ function App() {
 
   return !loading ? (
    <div className="min-h-screen flex flex-col bg-gray-100">
-      <div className="w-full block">
+
         <Header />
-       <main >
+       <main className="bg-slate-900">
     <Outlet />
 </main>
         <Footer />
       </div>
-    </div>
+ 
   ) : null;
 }
 

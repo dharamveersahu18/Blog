@@ -170,12 +170,12 @@ export default function PostForm({ post }) {
               transition-all
             "
           >
-            <option value="">Select Category</option>
+            Select a category
             <option value="React">React</option>
             <option value="JavaScript">JavaScript</option>
             <option value="DSA">DSA</option>
             <option value="AI">AI</option>
-            <option value="Career">Career</option>
+            <option value="Others">Others</option>
           </select>
         </div>
 
