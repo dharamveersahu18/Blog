@@ -12,37 +12,29 @@ import {
 
 const categories = [
   {
-    name: "React",
+    name: "Travel",
     icon: <Code2 size={24} />,
     color: "from-sky-500 to-cyan-500",
   },
   {
-    name: "JavaScript",
+    name: "Food & Recipes",
     icon: <Braces size={24} />,
     color: "from-yellow-400 to-orange-500",
   },
+
+  
   {
-    name: "Tailwind",
-    icon: <Palette size={24} />,
-    color: "from-cyan-500 to-blue-500",
-  },
-  {
-    name: "Appwrite",
-    icon: <Database size={24} />,
-    color: "from-pink-500 to-red-500",
-  },
-  {
-    name: "Others",
+    name: "Business & Finance",
     icon: <Server size={24} />,
     color: "from-green-500 to-emerald-600",
   },
   {
-    name: "DSA",
+    name: "Lifestyle & Wellness",
     icon: <Brain size={24} />,
     color: "from-purple-500 to-indigo-600",
   },
   {
-    name: "AI",
+    name: "Tech & Software",
     icon: <Bot size={24} />,
     color: "from-violet-500 to-fuchsia-600",
   },

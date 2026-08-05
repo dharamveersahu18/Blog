@@ -21,6 +21,7 @@ import ExplorePosts from './pages/ExplorePosts.jsx'
 import PostDetails from './pages/PostDetails.jsx'
 import Category from './pages/Category.jsx'
 import MyPosts from './pages/MyPosts.jsx'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -101,6 +102,7 @@ const router = createBrowserRouter([
             path:"/my-posts",
  element:<MyPosts />
         },
+   
     ],
 },
 ])

@@ -31,6 +31,7 @@ export class Service {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteTableId,
+
         slug,
         {
           title,
@@ -42,6 +43,7 @@ export class Service {
           provider,
           category,
           views: 0,
+        
         },
       );
     } catch (error) {
@@ -51,7 +53,7 @@ export class Service {
 
   // Update Post
 
-  async updatePost(slug, { title, content, featuredImage, status,category }) {
+  async updatePost(slug, { title, content, featuredImage, status, category }) {
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
@@ -62,7 +64,7 @@ export class Service {
           content,
           featuredImage,
           status,
-          category
+          category,
         },
       );
     } catch (error) {
@@ -157,7 +159,7 @@ export class Service {
     try {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
-      conf.appwritePostLikesCollectionId,
+        conf.appwritePostLikesCollectionId,
         ID.unique(),
         {
           postId,
@@ -176,7 +178,7 @@ export class Service {
     try {
       return await this.databases.deleteDocument(
         conf.appwriteDatabaseId,
-    conf.appwritePostLikesCollectionId,
+        conf.appwritePostLikesCollectionId,
         likeId,
       );
     } catch (error) {
@@ -209,9 +211,8 @@ export class Service {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
-         conf.appwritePostLikesCollectionId,
-        [Query.equal("postId", postId),
-           Query.equal("userId", userId)],
+        conf.appwritePostLikesCollectionId,
+        [Query.equal("postId", postId), Query.equal("userId", userId)],
       );
     } catch (error) {
       console.log("Appwrite Service :: checkLike :: error", error);
@@ -254,6 +255,26 @@ export class Service {
   getFileView(fileId) {
     return this.bucket.getFileView(conf.appwriteBucketId, fileId);
   }
+
+ async updateUserProfile(userId, data) {
+    try {
+
+      console.log("Updating user:");
+      console.log("Collection:", conf.appwriteUsersCollectionId);
+      console.log("Document:", userId);
+      console.log("Data:", data);
+
+      return await this.databases.updateDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteUsersCollectionId,
+        userId,
+        data,
+      );
+
+    } catch(error) {
+      console.log("Update Profile Error", error);
+    }
+}
 }
 
 const service = new Service();

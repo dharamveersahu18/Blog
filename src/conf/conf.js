@@ -12,6 +12,10 @@ const conf = {
     appwritePostLikesCollectionId: String(
     import.meta.env.VITE_APPWRITE_POST_LIKES_COLLECTION_ID
   ),
+appwriteUsersCollectionId: String(
+    import.meta.env.VITE_APPWRITE_USERS_COLLECTION_ID
+  ),
+
 };
 
 

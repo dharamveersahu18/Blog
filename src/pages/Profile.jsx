@@ -5,6 +5,7 @@ import appwriteService from "../appwrite/config";
 import { useNavigate } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
 
   const [posts, setPosts] = useState([]);
@@ -174,19 +175,7 @@ text-center
           {/* Buttons */}
 
           <div className="mt-8 space-y-3">
-            <button
-              className="
-w-full
-py-3
-rounded-xl
-bg-blue-600
-hover:bg-blue-700
-text-white
-transition
-"
-            >
-              Edit Profile
-            </button>
+  
           </div>
 
           {/* Recent Posts */}

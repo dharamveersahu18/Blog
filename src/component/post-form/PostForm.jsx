@@ -56,8 +56,6 @@ export default function PostForm({ post }) {
         }
 
         const dbPost = await appwriteService.updatePost(post.$id, {
-            
-            
           ...data,
           featuredImage: file ? file.$id : undefined,
         });
@@ -117,18 +115,18 @@ export default function PostForm({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
 
- return (
-  <div className="min-h-screen bg-gradient-to-br from-[#020617] via-[#0F172A] to-[#1E293B] py-10">
-    <form
-      onSubmit={handleSubmit(submit)}
-      className="max-w-7xl mx-auto flex flex-wrap gap-6"
-    >
-      {/* Left Section */}
-      <div className="w-full lg:w-[65%] bg-[#1E293B]/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl p-6">
-        <Input
-          label="Title"
-          placeholder="Enter blog title"
-          className="
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#020617] via-[#0F172A] to-[#1E293B] py-10">
+      <form
+        onSubmit={handleSubmit(submit)}
+        className="max-w-7xl mx-auto flex flex-wrap gap-6"
+      >
+        {/* Left Section */}
+        <div className="w-full lg:w-[65%] bg-[#1E293B]/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl p-6">
+          <Input
+            label="Title"
+            placeholder="Enter blog title"
+            className="
             w-full
             bg-[#111827]
             border
@@ -143,18 +141,18 @@ export default function PostForm({ post }) {
             focus:ring-blue-500/30
             transition-all
           "
-          {...register("title", { required: true })}
-        />
+            {...register("title", { required: true })}
+          />
 
-        {/* Category */}
-        <div className="mt-6">
-          <label className="block text-slate-200 font-medium mb-2">
-            Category
-          </label>
+          {/* Category */}
+          <div className="mt-6">
+            <label className="block text-slate-200 font-medium mb-2">
+              Category
+            </label>
 
-          <select
-            {...register("category", { required: true })}
-            className="
+            <select
+              {...register("category", { required: true })}
+              className="
               w-full
               bg-[#111827]
               border
@@ -169,22 +167,22 @@ export default function PostForm({ post }) {
               focus:border-blue-500
               transition-all
             "
-          >
-            Select a category
-            <option value="React">React</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="DSA">DSA</option>
-            <option value="AI">AI</option>
-            <option value="Others">Others</option>
-          </select>
-        </div>
+            >
+              Select a category
+              <option value="Tech & Software">Tech & Software</option>
+              <option value="Lifestyle & Wellness">Lifestyle & Wellness</option>
+              <option value="Business & Finance">Business & Finance</option>
+              <option value="Food & Recipes">Food & Recipes</option>
+              <option value="Travel">Travel</option>
+            </select>
+          </div>
 
-        {/* Slug */}
-        <div className="mt-6">
-          <Input
-            label="Slug"
-            placeholder="Slug"
-            className="
+          {/* Slug */}
+          <div className="mt-6">
+            <Input
+              label="Slug"
+              placeholder="Slug"
+              className="
               w-full
               bg-[#111827]
               border
@@ -199,35 +197,34 @@ export default function PostForm({ post }) {
               focus:ring-blue-500/30
               transition-all
             "
-            {...register("slug", { required: true })}
-            onInput={(e) =>
-              setValue("slug", slugTransform(e.currentTarget.value), {
-                shouldValidate: true,
-              })
-            }
-          />
+              {...register("slug", { required: true })}
+              onInput={(e) =>
+                setValue("slug", slugTransform(e.currentTarget.value), {
+                  shouldValidate: true,
+                })
+              }
+            />
+          </div>
+
+          {/* Editor */}
+          <div className="mt-6 text-white ">
+            <RTE
+              label="Content"
+              name="content"
+              control={control}
+              defaultValue={getValues("content")}
+            />
+          </div>
         </div>
 
-        {/* Editor */}
-        <div className="mt-6 text-white ">
-          <RTE
-            label="Content"
-            name="content"
-            control={control}
-            defaultValue={getValues("content")}
-          />
-        </div>
-      </div>
-
-      {/* Right Section */}
-      <div className="w-full lg:w-[32%]">
-        <div className="bg-[#1E293B]/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl p-6">
-
-          <Input
-            label="Featured Image"
-            type="file"
-            accept="image/png,image/jpg,image/jpeg,image/gif"
-            className="
+        {/* Right Section */}
+        <div className="w-full lg:w-[32%]">
+          <div className="bg-[#1E293B]/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl p-6">
+            <Input
+              label="Featured Image"
+              type="file"
+              accept="image/png,image/jpg,image/jpeg,image/gif"
+              className="
               w-full
               bg-[#111827]
               border
@@ -241,38 +238,38 @@ export default function PostForm({ post }) {
               focus:ring-blue-500/30
               transition-all
             "
-            {...register("image", { required: !post })}
-          />
+              {...register("image", { required: !post })}
+            />
 
-          {post && (
-            <div className="w-full my-6">
-              <img
-                src={appwriteService.getFileView(post.featuredImage)}
-                alt={post.title}
-                className="rounded-xl border border-slate-700"
+            {post && (
+              <div className="w-full my-6">
+                <img
+                  src={appwriteService.getFileView(post.featuredImage)}
+                  alt={post.title}
+                  className="rounded-xl border border-slate-700"
+                />
+              </div>
+            )}
+
+            <div className="mt-6">
+              <Select
+                options={["active", "inactive"]}
+                label="Status"
+                className="bg-[#111827] text-white border border-slate-700 rounded-xl"
+                {...register("status", { required: true })}
               />
             </div>
-          )}
 
-          <div className="mt-6">
-            <Select
-              options={["active", "inactive"]}
-              label="Status"
-              className="bg-[#111827] text-white border border-slate-700 rounded-xl"
-              {...register("status", { required: true })}
-            />
-          </div>
-
-          <Button
-            type="submit"
-            className="
+            <Button
+              type="submit"
+              className="
               w-full
               mt-8
               py-3
               rounded-xl
               text-white
               font-semibold
-              bg-gradient-to-r
+              bg-linear-to-r
               from-blue-600
               via-indigo-600
               to-violet-600
@@ -284,12 +281,12 @@ export default function PostForm({ post }) {
               shadow-lg
               hover:shadow-blue-500/30
             "
-          >
-            {post ? "Update Post" : "Publish Post"}
-          </Button>
+            >
+              {post ? "Update Post" : "Publish Post"}
+            </Button>
+          </div>
         </div>
-      </div>
-    </form>
-  </div>
-)
-};
+      </form>
+    </div>
+  );
+}

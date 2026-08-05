@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { Menu, X } from "lucide-react";
+import { Menu, X,LogOut } from "lucide-react";
 import { ChevronDown } from "lucide-react";
 
 import { Container, Logo, LogoutBtn } from "../index";
@@ -346,30 +346,7 @@ function Header() {
                       <span className="ml-3">My Posts</span>
                     </button>
 
-                    <button
-                      onClick={() => navigate("/edit-profile")}
-                      className="
-          w-full
-
-          flex
-          items-center
-
-          px-4
-          py-3
-
-          rounded-xl
-
-          text-gray-300
-
-          hover:bg-slate-800
-          hover:text-blue-400
-
-          transition
-          "
-                    >
-                      ⚙️
-                      <span className="ml-3">Edit Profile</span>
-                    </button>
+                   
 
                     <div
                       className="
@@ -380,17 +357,21 @@ function Header() {
           border-white/10
           "
                     >
-                      <div
-                        className="
-            rounded-xl
-
-            hover:bg-red-500/10
-
-            transition
-            "
-                      >
-                        <LogoutBtn />
-                      </div>
+                               <div
+  className="
+    flex items-center gap-2
+    px-4 py-2
+    rounded-xl
+    bg-red-500
+    text-black
+    font-semibold
+    hover:bg-red-600
+    transition-all duration-300
+  "
+>
+  <LogOut size={18} />
+<LogoutBtn />
+</div>
                     </div>
                   </div>
                 </div>
@@ -588,42 +569,23 @@ function Header() {
                     📝 My Posts
                   </button>
 
-                  <button
-                    onClick={() => {
-                      navigate("/edit-profile");
-                      setMobileMenu(false);
-                    }}
-                    className="
-            w-full
-            text-left
+               
 
-            px-4
-            py-3
-
-            rounded-xl
-
-            text-gray-300
-
-            hover:bg-slate-800
-            hover:text-blue-400
-
-            transition
-            "
-                  >
-                    ⚙️ Edit Profile
-                  </button>
-
-                  <div
-                    className="
-            mt-2
-            pt-3
-
-            border-t
-            border-white/10
-            "
-                  >
-                    <LogoutBtn />
-                  </div>
+       <div
+  className="
+    flex items-center gap-2
+    px-4 py-2
+    rounded-xl
+    bg-red-500
+    text-black
+    font-semibold
+    hover:bg-red-600
+    transition-all duration-300
+  "
+>
+  <LogOut size={18} />
+<LogoutBtn />
+</div>
                 </>
               )}
             </div>
