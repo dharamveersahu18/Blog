@@ -42,7 +42,7 @@ function TrendingPosts() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
 
-        <div className="flex items-end justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
           <div>
             <span className="text-blue-500 font-semibold uppercase tracking-widest">
               Featured
@@ -57,9 +57,23 @@ function TrendingPosts() {
             </p>
           </div>
 
-          <button className="hidden md:flex items-center gap-2 text-blue-400 hover:text-white transition">
-            View All
-            <ArrowRight size={18} />
+           <button
+    onClick={() => navigate("/explore")}
+    className="
+      mt-6 md:mt-0
+      flex items-center justify-center gap-2
+      w-full md:w-auto
+      px-6 py-3
+      rounded-xl
+      bg-blue-600
+      hover:bg-blue-700
+      text-white
+      font-semibold
+      transition
+    "
+  >
+    View All
+    <ArrowRight size={18} />
           </button>
         </div>
 
@@ -178,19 +192,7 @@ function TrendingPosts() {
         
         </div>
 
-        {/* Mobile Button */}
-
-        <div className="flex justify-center mt-12 md:hidden">
-          
-          <button 
-          onClick={() => navigate("/explore")}
-          className="px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">
-            View Blogs
-            <ArrowRight size ={18} />
-
-          </button>
-
-        </div>
+      
       </div>
     </section>
   );

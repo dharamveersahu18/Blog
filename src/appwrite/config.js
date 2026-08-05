@@ -43,7 +43,6 @@ export class Service {
           provider,
           category,
           views: 0,
-        
         },
       );
     } catch (error) {
@@ -256,9 +255,8 @@ export class Service {
     return this.bucket.getFileView(conf.appwriteBucketId, fileId);
   }
 
- async updateUserProfile(userId, data) {
+  async updateUserProfile(userId, data) {
     try {
-
       console.log("Updating user:");
       console.log("Collection:", conf.appwriteUsersCollectionId);
       console.log("Document:", userId);
@@ -270,11 +268,10 @@ export class Service {
         userId,
         data,
       );
-
-    } catch(error) {
+    } catch (error) {
       console.log("Update Profile Error", error);
     }
-}
+  }
 }
 
 const service = new Service();

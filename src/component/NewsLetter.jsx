@@ -2,15 +2,20 @@ import React, { useState } from "react";
 
 function NewsLetter() {
   const [email, setEmail] = useState("");
+const [message, setMessage] = useState("");
 
   const handleSubscribe = () => {
     if (!email.trim()) {
-      alert("Please enter your email.");
+      setMessage("❌ Please enter your email.");
       return;
     }
 
-    alert(`Thanks for subscribing, ${email}!`);
+    setMessage("✅ Thanks for subscribing! ");
     setEmail("");
+
+    setTimeout(() => {
+      setMessage("");
+    },3000)
   };
 
   return (
@@ -40,25 +45,27 @@ function NewsLetter() {
             Subscribe to receive the latest articles on React, JavaScript,
             Web Development, and programming tips directly in your inbox.
           </p>
-
+         
           <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center">
+  
             <input
               type="email"
               placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="
-                w-full
-                md:w-[420px]
-                px-5
-                py-4
-                rounded-xl
-                text-slate-900
-            border
-                focus:ring-4
-               
-                text-white
-              "
+             className="
+  w-full
+  md:w-[420px]
+  px-5
+  py-4
+  rounded-xl
+  border
+  text-slate-900
+  placeholder:text-black-500
+  focus:outline-none
+  focus:ring-4
+  focus:ring-blue-300
+"
             />
 
             <button
@@ -78,8 +85,15 @@ function NewsLetter() {
             >
               Subscribe
             </button>
+            
           </div>
-
+ {message && (
+  <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center">
+    <p className="inline-block rounded-lg bg-white/20 px-4 py-2 text-white font-medium">
+      {message}
+    </p>
+  </div>
+)}
           <p className="mt-5 text-sm text-blue-100">
             No spam. Unsubscribe anytime.
           </p>

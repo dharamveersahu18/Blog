@@ -286,7 +286,7 @@ function Header() {
                           {userData?.name}
                         </h2>
 
-                        <p className="text-sm text-gray-400 truncate max-w-[170px]">
+                        <p className="text-sm text-slate-400 truncate max-w-[170px]">
                           {userData?.email}
                         </p>
                       </div>
@@ -475,7 +475,7 @@ function Header() {
                       {userData?.name}
                     </h3>
 
-                    <p className="text-sm text-gray-400 truncate">
+                    <p className="text-sm text-slate-400 truncate">
                       {userData?.email}
                     </p>
                   </div>
