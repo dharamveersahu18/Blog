@@ -31,7 +31,15 @@ function MyPosts() {
 
 
 return (
-  <div className="py-8 px-4">
+  <div
+    className="
+        min-h-screen
+        bg-slate-950
+        pt-28
+        pb-16
+        px-4
+    "
+>
 
     <div className="mb-6">
       <h1 className="text-3xl font-bold text-white">

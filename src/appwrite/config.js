@@ -32,7 +32,7 @@ export class Service {
         conf.appwriteDatabaseId,
         conf.appwriteTableId,
 
-        slug,
+        ID.unique(),
         {
           title,
           slug,
