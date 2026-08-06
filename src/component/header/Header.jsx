@@ -92,7 +92,7 @@ function Header() {
               tracking-wide
               "
             >
-              LinkedPost
+              NexusPost
             </span>
           </Link>
 
