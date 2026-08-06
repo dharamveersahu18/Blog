@@ -7,6 +7,7 @@ import TrendingPosts from "../component/TrendingPosts"
 import Categories from "../component/Categories";
 import NewsLetter from "../component/NewsLetter";
 
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true); // 
