@@ -9,12 +9,11 @@ const conf = {
 
   appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
 
-    appwritePostLikesCollectionId: String(
-    import.meta.env.VITE_APPWRITE_POST_LIKES_COLLECTION_ID
-  ),appwriteProjectName: String(
-    import.meta.env.VITE_APPWRITE_PROJECT_NAME
+  appwritePostLikesCollectionId: String(
+    import.meta.env.VITE_APPWRITE_POST_LIKES_COLLECTION_ID,
   ),
+
+  appwriteProjectName: String(import.meta.env.VITE_APPWRITE_PROJECT_NAME),
 };
-
-
+console.log(conf);
 export default conf;

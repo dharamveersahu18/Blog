@@ -85,10 +85,11 @@ function TrendingPosts() {
                  
           {blogs.map((blog) => (
             <Link
+              key={blog.$id}
                   to={`/post/${blog.$id}`}
                   className="text-blue-400 hover:text-white transition">
             <article
-              key={blog.$id}
+            
               className="
               group
               overflow-hidden
