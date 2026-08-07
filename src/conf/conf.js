@@ -14,6 +14,11 @@ const conf = {
   ),
 
   appwriteProjectName: String(import.meta.env.VITE_APPWRITE_PROJECT_NAME),
+
+  appwriteTinyMce: String(import.meta.env.VITE_TINYMCE_API_KEY),
+
 };
+
+
 console.log(conf);
 export default conf;
