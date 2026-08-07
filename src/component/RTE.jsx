@@ -4,12 +4,13 @@ import { Controller } from "react-hook-form";
 
 export default function RTE({ name, control, label, defaultValue = "" }) {
   return (
-    <div className="mt-6 rounded-2xl overflow-hidden border border-slate-700">
-      {label && <label className="inline-block mb-1 pl-1">{label}</label>}
+    <div>
+      {label && <label className="mb-2 block">{label}</label>}
 
       <Controller
         name={name || "content"}
         control={control}
+        defaultValue={defaultValue}
         render={({ field: { onChange, value } }) => (
           <Editor
             apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
@@ -20,12 +21,6 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
               skin: "oxide-dark",
               content_css: "dark",
 
-              content_style: `
-        body {    
-            background:#020617;
-            color:white;
-        }
-    `,
               plugins: [
                 "advlist",
                 "autolink",
@@ -45,11 +40,13 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
                 "help",
                 "wordcount",
               ],
+
               toolbar:
                 "undo redo | blocks | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image",
+
               content_style: `
                 body {
-                  background-color: #0f172a;
+                  background-color: #020617;
                   color: #e2e8f0;
                   font-family: Inter, sans-serif;
                   font-size: 16px;
