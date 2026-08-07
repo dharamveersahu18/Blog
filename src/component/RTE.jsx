@@ -8,20 +8,19 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
       {label && <label className="inline-block mb-1 pl-1">{label}</label>}
 
       <Controller
-     
         name={name || "content"}
         control={control}
         render={({ field: { onChange, value } }) => (
           <Editor
-            apiKey="no-api-key"
+            apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
             value={value}
             onEditorChange={onChange}
             init={{
               height: 500,
-                skin: "oxide-dark",
-    content_css: "dark",
+              skin: "oxide-dark",
+              content_css: "dark",
 
-    content_style: `
+              content_style: `
         body {    
             background:#020617;
             color:white;
